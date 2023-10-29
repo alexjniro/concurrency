@@ -49,12 +49,12 @@ public class AuctionTests {
         stat.printStatistics();
     }
 
-//    @RepeatedTest(TEST_COUNT)
-//    @DisplayName("Optimistic: load test")
-//    @Tag("optimistic")
-//    public void testOptimisticUnderLoad() throws InterruptedException {
-//        loadTest(optimistic, "optimistic");
-//    }
+    @RepeatedTest(TEST_COUNT)
+    @DisplayName("Optimistic: load test")
+    @Tag("optimistic")
+    public void testOptimisticUnderLoad() throws InterruptedException {
+        loadTest(optimistic, "optimistic");
+    }
 
     @RepeatedTest(TEST_COUNT)
     @DisplayName("Pessimistic: load test")
@@ -63,21 +63,21 @@ public class AuctionTests {
         loadTest(pessimistic, "pessimistic");
     }
 
-//    @Test
-//    @DisplayName("Optimistic: lost update because of data races")
-//    @Tag("optimistic")
-//    @Timeout(60)
-//    public void lostUpdateOptimistic() throws InterruptedException {
-//        shouldNotLoseUpdate(optimistic);
-//    }
-//
-//    @Test
-//    @DisplayName("Pessimistic: lost update because of data races")
-//    @Tag("pessimistic")
-//    @Timeout(60)
-//    public void lostUpdatePessimistic() throws InterruptedException {
-//        shouldNotLoseUpdate(pessimistic);
-//    }
+    @Test
+    @DisplayName("Optimistic: lost update because of data races")
+    @Tag("optimistic")
+    @Timeout(60)
+    public void lostUpdateOptimistic() throws InterruptedException {
+        shouldNotLoseUpdate(optimistic);
+    }
+
+    @Test
+    @DisplayName("Pessimistic: lost update because of data races")
+    @Tag("pessimistic")
+    @Timeout(60)
+    public void lostUpdatePessimistic() throws InterruptedException {
+        shouldNotLoseUpdate(pessimistic);
+    }
 
     public void loadTest(Auction auction, String tag) throws InterruptedException {
         ExecutorService executor = Executors.newFixedThreadPool(poolSize);
