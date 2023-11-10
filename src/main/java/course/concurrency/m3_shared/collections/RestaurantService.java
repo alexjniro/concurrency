@@ -4,7 +4,6 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentSkipListMap;
 
 public class RestaurantService {
 
@@ -22,11 +21,11 @@ public class RestaurantService {
     }
 
     public void addToStat(String restaurantName) {
-        if (stat.containsKey(restaurantName)) {
-            stat.compute(restaurantName, (k, v) -> v + 1);
-        } else {
-            stat.put(restaurantName, 1);
-        }
+        stat.compute(restaurantName, (key, value) -> {
+            // If the key is not present, initialize it with 1
+            // If the key is present, increment the value
+            return value == null ? 1 : value + 1;
+        });
     }
 
     public Set<String> printStat() {
